@@ -1,0 +1,26 @@
+services:
+  dropboard-asp:
+    image: ghcr.io/qqga/dropboard:latest
+    container_name: dropboard_asp_container
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+      - DOTNET_GCHeapHardLimit=0xC800000 #жёсткий лимит кучи 0xC800000 — 200 МБ
+      - DOTNET_GCServer=0
+    mem_limit: 300m
+    memswap_limit: 300m
+    tmpfs:
+      - /tmp:size=550M,mode=1777
+    networks:
+      - web_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m" # Максимальный размер одного файла
+        max-file: "10"   # Хранить не более 3-х последних файлов
+
+networks:
+  web_network:
+    external: true

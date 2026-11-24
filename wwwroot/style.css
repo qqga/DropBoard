@@ -1,0 +1,9 @@
+﻿body {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+
+.drag-active {
+    border-color: #38bdf8 !important;
+    background-color: rgba(56, 189, 248, 0.08) !important;
+}

@@ -1,0 +1,11 @@
+services:
+  dropboard:
+    build: .
+    container_name: dropboard
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    mem_limit: 256m
+    memswap_limit: 256m
+    tmpfs:
+      - /tmp:size=550M,mode=1777
